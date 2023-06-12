@@ -1,0 +1,211 @@
+.fullScan{
+    min-height: 100vh;
+    padding: 50px;
+    background:radial-gradient(circle at 3% 25%,#002853 0,#040c18 25%) !important; 
+}
+
+.report{
+    padding: 20px;
+    /* background-color: rgba(217,217,227,.8); */
+    color: black;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.report code{
+    background-color:  rgba(217,217,227,.8);
+    padding: 5px 20px;
+    font-size: 22px;
+
+}
+.d-btn {
+    padding: 0.5rem 1rem;
+    color: #fff;
+    background: var(--gradient-bar);
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+    display: block;
+    float: right;
+    margin: 20px;
+}
+
+.tool{
+    padding: 5px 0px;
+}
+.tool h1{
+    font-size: 20px;
+    width: max-content;
+    padding-top: 20px;
+    color: #002853;
+
+}
+.tool h2{
+    color: black;
+}
+
+.tool h3{
+    font-size: 20px;
+    width: max-content;
+    padding-top: 15px;
+    color: wheat;
+}
+
+.output{
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px ;
+    background-color: rgba(217,217,227,.8);
+}
+
+.output strong{
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.report ul{
+    padding: 2px 20px;
+}
+
+.report thead{
+    font-size: 22px;
+    font-weight: bold;
+}
+.report table,.report th,.report td{
+    width: 55%;
+    font-size: 20px;
+    border-collapse: collapse;
+    padding: 2px;
+  
+}
+
+/* dsfd */
+.toolData{
+    margin: 2rem;  
+}
+
+.infoTab{
+    margin-left: 2rem;
+}
+.toolInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border-radius: 20px;
+    background:linear-gradient(180deg,#0b3b52 3.72%,#0b121f 141.1%);        
+}
+
+.toolInfo .Title{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.titleDiv{
+    width: 10%;
+    height: 3px;
+    background: var(--gradient-bar);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 0.25rem;
+}
+
+.toolInfo h2{
+    font-size: 24px;    
+}
+
+.toolInfo p{
+    font-size: 18px;
+    padding: 0px 15px;
+}
+
+.toolInfo h3{
+    font-size: 20px;
+    width: max-content;
+    border-bottom: 2px solid #FF4820;
+    padding-top: 15px;
+}
+
+.toolInfo li{
+    font-size: 18px;
+}
+.toolInfo ul{
+    padding: 0px 30px
+}
+
+.toolInfo code {
+    margin: 5px 25px;  
+    display: inline-block;
+    background-color: #333;
+    padding: 4px 8px;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 4px;
+  }
+
+.OutputDiv{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background:linear-gradient(180deg,#0b3b52 3.72%,#0b121f 141.1%);        
+    padding: 30px 
+
+}
+.mainDiv{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    align-items: center;
+}
+.mainDiv ul{
+    margin: 1rem 3rem;
+}
+.mainDiv li{
+    font-size: 20px;
+}
+.mainDiv h3{
+    font-size: 22px;
+}
+.TitleDiv{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+
+
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+  }
+  
+  table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-left: 8rem;
+    margin-right: 8rem;
+  }
+  
+  th {
+    text-align: left;
+    padding: 8px;
+    font-size: 20px;
+    width: calc(100% / 3);
+
+  }
+  
+  td {
+    padding: 8px;
+  }

@@ -1,0 +1,113 @@
+.gradient-custom,
+.profile_page {
+  /* fallback for old browsers */
+  background: #f6d365;
+  min-height: 100vh;
+  color: white;
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+  background: radial-gradient(circle at 3% 25%, #002853 0, #040c18 25%) !important;
+
+}
+
+.loaderContainer{
+  background:radial-gradient(circle at 3% 25%,#002853 0,#040c18 25%) !important; 
+  padding: 10px 100px;
+  color: white;
+  min-height: 100vh;
+  gap: 20px;
+}
+
+.reportsCards {
+  padding: 10px 30px;
+}
+
+.Name_field {
+  font-size: 100px;
+  display: flex;
+  /* color: #fff;   */
+  /* min-height: 50px; */
+
+  justify-content: center;
+
+}
+
+.User_info {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+
+
+
+
+.container_header {
+  color: #fff;
+}
+
+.AllTools {
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+
+.Profile_container {
+  background-color: gray;
+  width: 20vw;
+  margin: 10px;
+
+  border-radius: 5px;
+  padding: 10px;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.Scan_description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: medium;
+  align-items: center;
+  text-align: center;
+  min-height: 100px;
+
+}
+
+.Scan_description.p1 {
+  font-size: medium;
+  color: red;
+
+}
+
+.download_button {
+  background-color: #222;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+
+
+}
+
+.Scan_description {
+
+  margin: 0px 3px 0px 3px;
+}
+
+.Scan_result {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px;
+}

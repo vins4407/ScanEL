@@ -1,0 +1,97 @@
+.scanel__footer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.scanel__footer-heading {
+    flex: 1;
+    width: 100%;
+    /* margin-bottom: 2rem; */
+    color: #fff;
+}
+
+.scanel__footer-heading h1 {
+    justify-content: center;    
+    font-family: var(--font-family);
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 50px;
+    margin-bottom: 10px;
+}
+
+.scanel__footer-links_logo p {
+    font-family: var(--font-family);
+    font-size: 25px;
+    line-height: 15px;
+    color: #fff;
+}
+
+.scanel__footer-links_div {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+
+}
+
+.scanel__footer-links_div h4 {
+    font-size: 20px;
+    line-height: 17px;
+    font-family: var(--font-family);
+    color: #fff;
+
+    margin-bottom: 0.9rem;
+}
+
+.scanel__footer-links_div p {
+    font-size: 20px;
+    line-height: 15px;
+    font-family: var(--font-family);
+    color: #fff;
+
+    margin: 0.5rem 0;
+    cursor: pointer;
+}
+
+.scanel__footer-copyright {
+    margin-top: 2rem;
+    text-align: center;
+    width: 100%;
+}
+
+.scanel__footer-copyright p {
+    font-size: 12px;
+    font-family: var(--font-family);
+    line-height: 15px;
+    color: #fff;
+}
+
+@media screen and (max-width: 850px) {
+    .scanel__footer-heading h1 {
+        font-size: 44px;
+        line-height: 50px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .scanel__footer-heading h1 {
+        font-size: 34px;
+        line-height: 42px;
+    }
+
+    .scanel__footer-links div {
+        margin: 1rem 0;
+    }
+
+    .scanel__footer-btn p {
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .scanel__footer-heading h1 {
+        font-size: 27px;
+        line-height: 38px;
+    }
+}
