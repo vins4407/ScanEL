@@ -95,7 +95,6 @@
 .toolInfo {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
     border-radius: 20px;
     background:linear-gradient(180deg,#0b3b52 3.72%,#0b121f 141.1%);        
 }

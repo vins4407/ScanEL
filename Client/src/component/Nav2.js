@@ -15,7 +15,7 @@ const Navbar2 = () => (
     <div className="scanEL__navbar-sign">
 
       <div className='auth_buttons'>
-        <a href='/'><button className='singin_btn'>home</button></a>
+        <a href='/'><button className='signin_btn'>home</button></a>
       </div>
 
     </div>

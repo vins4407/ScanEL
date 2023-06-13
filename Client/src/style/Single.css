@@ -137,3 +137,18 @@ hr {
     margin-right: 8rem;
   } */
   /* Distribute equal width for each table head */
+  @media screen and (max-width: 550px){
+    .singleScan{
+        background:radial-gradient(circle at 3% 25%,#002853 0,#040c18 25%) !important; 
+        padding: 10px 20px;
+        color: white;
+        min-height: 100vh;
+        gap: 20px;
+    }
+
+    .toolInfo{
+        padding: 20px;
+    }
+    
+
+  }

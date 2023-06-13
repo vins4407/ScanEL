@@ -57,7 +57,7 @@ export function Search() {
     console.log(domain, scanType, userId);
     if (uid != null) {
       console.log(uid)
-      await axios.post(`http://34.68.145.96:8000/fullscan?domain=${domain}&UID=${userId}&nom=8695634407`
+      await axios.post(`http://192.168.122.1:8000/fullscan?domain=${domain}&UID=${userId}&nom=8695634407`
       )
         .then(res => {
           console.log(res);
@@ -147,7 +147,7 @@ export function Search() {
         <center><code style={{ backgroundColor: 'blanchedalmond', padding: 10, borderRadius: 5 }}>{toastMessage}</code></center>
       </div>}
       {loading ? <><div className='loaderContainer'><Loader /> </div></> :
-        <div>
+        <>
           {/* Search Section */}
           <div className="search_container">
 
@@ -194,7 +194,7 @@ export function Search() {
           </div>
           <Whyscanel />
           <Footer />
-        </div>}
+        </>}
 
     </>
   );

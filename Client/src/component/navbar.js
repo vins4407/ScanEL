@@ -27,22 +27,24 @@ const Navbar = () => {
       <div className="scanEL__navbar-sign"> 
    
         {currentUser 
-          ? (<>
+          ? (<div className='auth_buttons'>
               {history.location.pathname !== '/profile' ? (
               <a href='/profile'>
-              <button className='singin_btn'>Profile</button>
+              <button className='signin_btn'>Profile</button>
              </a>
               ) : (
                 <a href='/'>
                   <button className='singin_btn'>Home</button>
                 </a>
               )}
-              <button onClick={() => {app.auth().signOut();Cookies.remove('userID'); window.location.href= "/";}}>Logout</button>
-              </>
+              <a>
+              <button className='signin_btn' onClick={() => {app.auth().signOut();Cookies.remove('userID'); window.location.href= "/";}}>Logout</button>
+              </a>
+              </div>
               ) 
           : (<div className='auth_buttons'>
-           <a href='/login'><button className='singin_btn' >Sign In </button></a>
-           <a href='/signup'><button className='singin_btn'>Sign up</button></a>
+           <a href='/login'><button className='signin_btn' >Sign In </button></a>
+           <a href='/signup'><button className='signin_btn'>Sign up</button></a>
            </div>
          )}
          </div>

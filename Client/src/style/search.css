@@ -97,9 +97,7 @@
       flex-direction: column;
       align-items: center;
   }
-  .search_container .first-section-left{
-    padding-right: 20px; ;
-  }
+  
 
   .gpt3__header-content {
       margin: 0 0 3rem;
@@ -134,18 +132,31 @@
 }
 
 @media screen and (max-width: 490px) {
+  .search_container{
+    padding: 0 30px 30px  30px ;
+    margin-right: 0;
+    display:flex ;
+    flex-direction: column-reverse;  
+  }
   .scannel__ai-image img {
     width: 100%;
     height: 100%;
-    padding-left: 20px;
   }
   .first-section-left{
+    display: flex;
+    justify-content: center;
     align-items: center;
+    margin-left: 0;
+    padding-right: 0;
+    
   
   }
   .first-section-left h1 {
       font-size: 36px;
       line-height: 48px;
+  }
+  .first-section-left h3{
+    width: 60vw;
   }
 
   .first-section-left p {

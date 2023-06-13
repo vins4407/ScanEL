@@ -56,20 +56,23 @@
 }
 
 .scannel__container_tools-content a{
+    background: var(--gradient-bar);;
     position: absolute; bottom: 0;
     padding-bottom: 20px;
     text-decoration:none;
     font-family: var(--font-family);
     font-weight: 800;
     font-size: 22px;
+    transition: color 0.5s ease;
     line-height: 24px;
     letter-spacing: -0.04em;
-    color: orangered;
 
 }
 
 .scannel__container_tools-content a:hover{
     color: #fff;
+    font-size: 24px; 
+
 }
 
 

@@ -52,34 +52,19 @@ const Signup = () => {
 
 
   
-  const getUserData = async () => {
-    const userRef = app.firestore().collection("users").doc(userId);
-    const doc = await userRef.get();
-    if (!doc.exists) {
-      console.log("No such document!");
-    } else {
-      console.log("Document data:", doc.data());
-    }
-  };
-
 
 
     return (
         <div id="background" className="gradient__bg">
           <Navbar2/>
-          <div className="SignUp">
+          <div className="main_div">
             <div className="signup-container">
-                <div className="scanEL__navbar-links">
-                    <a href='/'>
-                    <div >
-                    <img className='ScannelLogo' src={logo} style={{width:"10vw"}} alt=""></img>
-                    </div>
-                    </a>
+                <a href='/'>
+                   <img className='logo' src={logo}  alt=""></img>
+                </a>
                 
-                  </div>
               <form className='signup-form' onSubmit={handleSignUp}>
                 <input className="input-email" name="email" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-                {/* <button onClick={getUserData}>test</button> */}
                 <input className="input-password" name="password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 <input className="input-text " value={number} name="number" type="text" placeholder="Number" onChange={(e) => setNumber(e.target.value)} />
                 <button className="signup_submit " type="submit">Sign Up</button>

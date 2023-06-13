@@ -83,26 +83,18 @@ const Login = () => {
     <div id="background" className="gradient__bg" >
       <Navbar2 />
       <div className="main_div ">
-         <div className='central_div'>
-          
-            <div className="login_container">
-              <div className="scanEL__navbar-links">
+            <div className="login_container " >
                   <a href='/'>
-                  <div >
-                  <img className='ScannelLogo' src={logo} style={{width:"10vw"}} alt=""></img>
-                  </div>
+                  <img className='logo' src={logo} alt=""></img>
                   </a>
               
-                </div>
              <form className='login-form' onSubmit={handleLogin}>
               <input className="input-email " name="email" type="email" placeholder="Email" value={email}  onChange={(e) => setEmail(e.target.value)} />
-              < input className="input-password " name="password" type="password" placeholder="Password"  value={password} onChange={(e) => setPassword(e.target.value)} />
+              <input className="input-password " name="password" type="password" placeholder="Password"  value={password} onChange={(e) => setPassword(e.target.value)} />
               <button className="Submit_btn" type="submit">Log in</button>
              <p>Don't have an account? <a href="/signup" className="signUpbtn">Sign Up</a></p>
            </form>       
             </div>
-         </div>
-  
       </div>
       <Footer />
     </div>

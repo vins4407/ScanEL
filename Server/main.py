@@ -3,15 +3,16 @@ from time import gmtime, strftime
 import subprocess
 import time
 from starlette.middleware.cors import CORSMiddleware
-from twilio.rest import Client
 from parse import parse_whois_output , parse_dig_output , parse_subfinder_output ,parse_nmap_output,parse_http_output,parse_sslscan_output,parse_dnsscan_output,parse_whatweb_output, parse_wapiti_output
 import os
 import socket
 import firebase_admin
 from firebase_admin import credentials, firestore, storage
 import uvicorn
-app = FastAPI()
 import json
+
+app = FastAPI()
+
 
 origins = [
     "http://localhost:3000",
