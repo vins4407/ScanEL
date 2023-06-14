@@ -62,16 +62,16 @@ async def scan(request: Request, domain: str, scan_type: str, UID: str, nom: int
     elif scan_type == "wpscan":
         result = subprocess.run(["wpscan","--url", domain], capture_output=True, text=True)
     elif scan_type == "nuclei":
-        output = subprocess.run(["nuclei","-u",domain,"-t","nuclei-templates/http/misconfiguration/http-missing-security-headers.yaml","--silent"], capture_output=True, text=True)
+        output = subprocess.run(["nuclei","-u",domain,"-t","/home/vinayak1506/nuclei-templates/http/misconfiguration/http-missing-security-headers.yaml","--silent"], capture_output=True, text=True)
         result = parse_http_output(output.stdout)
     elif scan_type == "whatweb":
-        output = subprocess.run(["nuclei","-u",domain,"-t","nuclei-templates/http/technologies","--silent"], capture_output=True, text=True)
+        output = subprocess.run(["nuclei","-u",domain,"-t","/home/vinayak1506/nuclei-templates/http/technologies","--silent"], capture_output=True, text=True)
         result = parse_whatweb_output(output.stdout)
     elif scan_type == "sslscan":
-        output = subprocess.run(["nuclei","-u",domain,"-t","nuclei-templates/ssl","--silent"], capture_output=True, text=True)
+        output = subprocess.run(["nuclei","-u",domain,"-t","/home/vinayak1506/nuclei-templates/ssl","--silent"], capture_output=True, text=True)
         result = parse_sslscan_output(output.stdout)
     elif scan_type == "dnsscan":
-        output = subprocess.run(["nuclei","-u",domain,"-t","nuclei-templates/dns","--silent"], capture_output=True, text=True)
+        output = subprocess.run(["nuclei","-u",domain,"-t","/home/vinayak1506/nuclei-templates/dns","--silent"], capture_output=True, text=True)
         result = parse_dnsscan_output(output.stdout)
 
     elif scan_type == "wapiti":
