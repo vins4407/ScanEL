@@ -11,10 +11,8 @@ import Cookies from "js-cookie";
 import { Whyscanel } from "./whyscanel";
 import { Footer } from "./footer";
 import Loader from './Loader';
-
-// import 'react-dropdown/style.css';
-
-Modal.setAppElement("#root");
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -25,24 +23,28 @@ export function Search() {
   const [userId, setUserId] = useState(null);
   const [loading, setLoading] = useState(false)
   const [responseData, setResponseData] = useState('')
-  const [showToast, setShowToast] = useState(false);
   const history = useHistory();
-
-  const [toastMessage, setToastMessage] = useState("");
-
-  const showToastNotification = (message) => {
-    setToastMessage(message);
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 3000);
-  };
-
+  
   const [selectedOption, setSelectedOption] = useState('Scan');
 
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
     setScanType(event.target.value)
+  };
+  const showToastNotification = (message) => {
+    toast.warning(message,{
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    }); 
+    // Show success toast notification
+    // toast.error(message); // Show error toast notification
+    // toast.info(message); // Show info toast notification
   };
 
   
@@ -113,7 +115,6 @@ export function Search() {
   const clearInputs = () => {
     // console.log("this is response data",responseData);
     if (responseData === "Done") {
-      alert("Scan is completed successfully \n You will receive a sms on registered number shortly !!");
       setScanType("");
       setDomain("");
     }
@@ -133,7 +134,7 @@ export function Search() {
           <h1>{heading}</h1>
           <p>{data}</p>
         </div>
-        <a href={`/singlescan/${btn}`} >scan</a>
+        <a  href={`/singlescan/${btn}` }  >Scan</a>
       </div>
     </div>
   )
@@ -143,9 +144,20 @@ export function Search() {
 
   return (
     <>
-      {showToast && <div>
-        <center><code style={{ backgroundColor: 'blanchedalmond', padding: 10, borderRadius: 5 }}>{toastMessage}</code></center>
-      </div>}
+     
+     <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        limit={1}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        />
       {loading ? <><div className='loaderContainer'><Loader /> </div></> :
         <>
           {/* Search Section */}
@@ -183,10 +195,10 @@ export function Search() {
                 <ToolsCard imgUrl={tcp} heading="TCP Scan" data="Checks for any open TCP Port on your server" btn="nmap" />
                 <ToolsCard imgUrl={whois} heading="Whois" data="Check for Registry and Registrar and other domain details" btn="whois" />
                 <ToolsCard imgUrl={whatweb} heading="WhatWeb" data="Check for Registry and Registrar and other domain details" btn="whatweb" />
-                <ToolsCard imgUrl={dig} heading="Dig" data="The dig (domain information groper) command is a flexible tool for interrogating DNS name servers." btn="dig" />
+                <ToolsCard imgUrl={dig} heading="Dig" data="Domain information groper is a tool for interrogating DNS name servers." btn="dig" />
                 <ToolsCard imgUrl={nuclei} heading="Nuclei-HTTPHeader" data="It helps to find security issues based onYAML-based templates. " btn="nuclei" />
-                <ToolsCard imgUrl={dns} heading="DnsREcon" data="DNSRecon is a Python script that provides the ability to perform: Check all NS Records for Zone Transfers." btn="dnsscan" />
-                <ToolsCard imgUrl={sslscan} heading="sslscan" data="Used to evaluate the security of the SSL/TLS support of a remote web service." btn="sslscan" />
+                <ToolsCard imgUrl={dns} heading="DnsREcon" data="DNS reconnaissance tool used for enumerating DNS information" btn="dnsscan" />
+                <ToolsCard imgUrl={sslscan} heading="sslscan" data="Scans SSL/TLS services to identify protocols,cipher suites vulnerabilities" btn="sslscan" />
 
             
             </div>

@@ -1,7 +1,6 @@
 import React, {  useContext, useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import app from '../../firebase/base';
-import { AuthContext } from '../../auth/auth';
 import { Footer } from '../../component/footer.js';
 import './login.css';
 import { UserContext } from '../../component/UserContext';
@@ -9,28 +8,51 @@ import firebase from "firebase/compat/app";
 import Navbar2 from '../../component/Nav2.js';
 import Cookies from "js-cookie";
 import logo from '../../assets/logo1.png';
+import Loader from '../../component/Loader';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { userId, setUserId } = useContext(UserContext);
+  const [loading, setLoading] = useState(false)
+
+
+  const showToastNotification = (message) => {
+    toast.error(message,{
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    }); 
+  };
+
 
   console.log("this is current user uid", userId);
 
   const handleLogin = (event) => {
+      setLoading(true);
       event.preventDefault();
       app
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then((user) => {
+          setLoading(false)
           setUserId(user.user.uid);
           console.log("Login successful:", user);
           fetchUserData();
-          window.location.href = "/";
+          localStorage.setItem('toastMessage', 'Login Successful!');
+          window.location.href = "/";    
         })
         .catch((error) => {
+          setLoading(false)
           console.error("Login error:", error);
-          // alert("something wents wrong...\n" + error);
+          showToastNotification("Please enter the details correctly!");
         });
     };
   
@@ -62,42 +84,49 @@ const Login = () => {
   };
 
 
-
-  const { currentUser } = useContext(AuthContext);
-  const [userData, setUserData] = useState(null);
-
-  // fetcch data 
-  useEffect(() => {
-    if (currentUser) {
-      fetchUserData(currentUser.uid).then((data) => {
-        setUserData(data);
-      });
-    }
-  }, [currentUser]);
-
-  // if (!userData) {
-  //   return <div>Loading...</div>;
-  // }
-
   return (
-    <div id="background" className="gradient__bg" >
-      <Navbar2 />
-      <div className="main_div ">
-            <div className="login_container " >
-                  <a href='/'>
-                  <img className='logo' src={logo} alt=""></img>
-                  </a>
-              
-             <form className='login-form' onSubmit={handleLogin}>
-              <input className="input-email " name="email" type="email" placeholder="Email" value={email}  onChange={(e) => setEmail(e.target.value)} />
-              <input className="input-password " name="password" type="password" placeholder="Password"  value={password} onChange={(e) => setPassword(e.target.value)} />
-              <button className="Submit_btn" type="submit">Log in</button>
-             <p>Don't have an account? <a href="/signup" className="signUpbtn">Sign Up</a></p>
-           </form>       
+    
+   
+    <div id="background" className="gradient__bg">
+   
+      {loading ? (
+        <div className='loaderContainer'><Loader /></div>
+      ) : (
+        <>
+         <ToastContainer/>
+          <Navbar2 />
+          <div className="main_div">
+            <div className="login_container">
+              <a href='/'>
+                <img className='logo' src={logo} alt=""></img>
+              </a>
+              <form className='login-form' onSubmit={handleLogin}>
+                <input
+                  className="input-email"
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <input
+                  className="input-password"
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <button className="Submit_btn" type="submit">Log in</button>
+                <p>Don't have an account? <a href="/signup" className="signUpbtn">Sign Up</a></p>
+              </form>
             </div>
-      </div>
-      <Footer />
+          </div>
+          <Footer />
+        </>
+      )}
     </div>
+ 
   );
 }
 

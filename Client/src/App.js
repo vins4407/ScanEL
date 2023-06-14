@@ -1,12 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route,  Switch } from "react-router-dom";
 import Homepage from "./pages/homepage";
-import Navbar from "./component/navbar";
 import Login from "./pages/login-page/login";
 import Signup from "./pages/signup-page/signup";
 import { AuthProvider } from "./auth/auth";
-import { Profile } from "./component/profile";
-import { SingleScan } from "./component/SingleScan";
+import { Profile } from "./pages/profile";
+import { SingleScan } from "./pages/SingleScan";
 import FullScan from "./pages/FullScan";
 import { OtherPage } from "./pages/demoReport";
 

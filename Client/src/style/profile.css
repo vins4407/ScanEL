@@ -1,47 +1,57 @@
-.gradient-custom,
 .profile_page {
   /* fallback for old browsers */
   background: #f6d365;
   min-height: 100vh;
   color: white;
-  /* Chrome 10-25, Safari 5.1-6 */
+    /* Chrome 10-25, Safari 5.1-6 */
   background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
-
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
   background: radial-gradient(circle at 3% 25%, #002853 0, #040c18 25%) !important;
-
+}
+.info_section{
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+}
+.User_info {
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  flex-direction: column;
+  height: 6rem;
+  width: 30rem;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #0b3b52 3.72%, #0b121f 141.1%);
 }
 
-.loaderContainer{
-  background:radial-gradient(circle at 3% 25%,#002853 0,#040c18 25%) !important; 
+.user_icon{
+width: 25%;
+height: 25%;
+display: flex;
+justify-content: start;
+}
+
+.user_icon img{
+  width: 100%;
+  height: 100%;
+}
+
+
+.loaderContainer {
+  background: radial-gradient(circle at 3% 25%, #002853 0, #040c18 25%) !important;
   padding: 10px 100px;
   color: white;
   min-height: 100vh;
   gap: 20px;
 }
 
-.reportsCards {
-  padding: 10px 30px;
-}
-
 .Name_field {
   font-size: 100px;
   display: flex;
-  /* color: #fff;   */
-  /* min-height: 50px; */
-
   justify-content: center;
-
 }
-
-.User_info {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-
-
 
 
 
@@ -56,20 +66,41 @@
   flex-wrap: wrap;
 }
 
+/* Reports Card */
 
-.Profile_container {
-  background-color: gray;
+.Reports-main {
+  padding: 4rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 2fr);
+  grid-gap: 2rem;
+  flex-direction: column;
+  justify-items: center; /* Centers items horizontally */
+  align-items: center;
+}
+
+.reportCard {
+  background: linear-gradient(180deg, #0b3b52 3.72%, #0b121f 141.1%);
   width: 20vw;
   margin: 10px;
-
   border-radius: 5px;
-  padding: 10px;
+  padding: 2rem;
   color: #fff;
   justify-content: center;
   align-items: center;
   display: flex;
   flex-direction: column;
+}
 
+.reportCard h2 {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.Scan_result {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px;
 }
 
 .Scan_description {
@@ -81,13 +112,12 @@
   align-items: center;
   text-align: center;
   min-height: 100px;
-
+  margin: 0px 3px 0px 3px;
 }
 
 .Scan_description.p1 {
   font-size: medium;
   color: red;
-
 }
 
 .download_button {
@@ -97,17 +127,59 @@
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 1rem;
-
-
 }
 
-.Scan_description {
+/* Media Queries for Responsive Layout */
 
-  margin: 0px 3px 0px 3px;
+/* Larger Screens (Desktops) */
+@media only screen and (min-width: 1200px) {
+  .Reports-main {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .reportCard {
+    width: 18vw;
+  }
 }
 
-.Scan_result {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 15px;
+/* Medium Screens (Tablets) */
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+  .Reports-main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .reportCard {
+    width: 40vw;
+  }
 }
+
+/* Small Screens (Mobile Phones) */
+@media only screen and (max-width: 767px) {
+  .profile_page {
+    padding: 20px;
+  }
+  .User_info{
+    width: 90%;
+  }
+  .User_info h4{
+    font-size: 18px;
+  }
+
+  .Reports-main {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 3rem;
+  }
+  .User_info{
+    flex-direction: column;
+  }
+
+  .reportCard {
+    width: 60vw;
+  }
+
+  .Name_field {
+    font-size: 50px;
+  }
+}
+
+/* Adjust the media queries and styles as per your design requirements */

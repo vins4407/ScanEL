@@ -1,15 +1,13 @@
-// import React from 'react';
 import '../style/profile.css'
-import Navbar from './navbar';
-import React, { useState, useContext, useEffect, useRef } from 'react';
-import { AuthContext } from '../auth/auth';
+import Navbar from '../component/navbar';
+import React, { useState, useEffect } from 'react';
 import Cookies from "js-cookie";
 import firebase from "firebase/compat/app";
 import { useHistory } from 'react-router-dom';
-import Loader from './Loader';
-import axios from "axios";
-
-
+import Loader from '../component/Loader';
+import { ToastContainer } from 'react-toastify';
+import { AiFillMail,AiFillPhone,AiOutlineProfile } from 'react-icons/ai';
+import user from '../assets/user-folder.png'
 export function Profile() {
   const [userID, setUserId] = useState(null)
   const [userDetails, setUserDetails] = useState();
@@ -88,19 +86,16 @@ export function Profile() {
   };
 
   const ReportsCards = () => {
+
     const reportCards = userReports.map((report, index) => (
       // console.log(report.data()),
-      <div key={index} className='reportsCards'>
-        <div className='Scan_result'>
-          <div className='Profile_container'>
+      <div key={index} className='reportCard'>    
             <h2>{report.data().Domain}</h2>
             <div className="Scan_description">
               <p1>Scan Type: {report.data().Scan_type}</p1>
               <p1>Scanned on: {report.data().Timestamp}</p1>
             </div>
-            <button className="download_button" onClick={() => handleDownload(report.data())}>Download</button>
-          </div>
-        </div>
+            <button className="download_button submit__btn" onClick={() => handleDownload(report.data())}>Download</button>
       </div>
     ));
 
@@ -140,16 +135,23 @@ export function Profile() {
 
 
   return (
-    <>{showToast && <div>
-      <center><code style={{ backgroundColor: 'blanchedalmond', padding: 10, borderRadius: 5 }}>{toastMessage}</code></center>
-    </div>}
+    <>
+      <ToastContainer/>
       {loading ? <><div className='loaderContainer'><Loader /> </div></>
         : userID ? (
           <div className='profile_page'>
             <Navbar />
-            {/* <Navbar2/> */}
+           <div >
+            {/* Info Section */}
             <div className='info_section'>
-              <div style={{ padding: '20px 100px' }}>
+              <div className='user_icon'><img src={user}></img></div>
+              <div className='User_info'>
+                    <h4 className='email_field'> <AiFillMail/>Email: {userDetails.email}</h4>
+                    <h4 className='Number_field'> <AiFillPhone/>Ph.Number: {userDetails.number}</h4>
+                </div>
+            </div>
+            {/* CronJob Section */}
+            <div style={{ padding: '20px 100px' }}>
                 <div className="input-div">
                   <input className="input-field" placeholder="e.g. www.example.com" type="domain" onChange={(e) => { setDomain(e.target.value) }}></input>
                   <div className="input-field">
@@ -168,23 +170,18 @@ export function Profile() {
                       <option value="fullscan">Full Scan</option>
                     </select>
                   </div>
-                  <button onClick={handleSubmit} className="submit__btn" >Set Cron-Job</button>
+                  <button  onClick={handleSubmit} className="submit__btn" >Set Cron-Job</button>
                 </div>
-              </div>
-
-              <div className='User_info'>
-                <div className='email_field'> Email:{userDetails.email}</div>
-                <div className='Number_field'> Phone Number:{userDetails.number}</div>
-              </div>
             </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+
+           <div >
+            {/* Reports section */}
+           <div className='Reports-main'>
               <ReportsCards />
             </div>
-            {userReports.forEach((doc) => {
-              return <>
-                <h1>{doc.data().Domain}</h1>
-              </>
-            })}
+           </div>
+          </div>
+           
           </div>)
           : (<div>You are not logged in </div>)}
     </>
