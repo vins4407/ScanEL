@@ -151,7 +151,7 @@ export function Profile() {
                 </div>
             </div>
             {/* CronJob Section */}
-            <div style={{ padding: '20px 100px' }}>
+            <div >
                 <div className="input-div">
                   <input className="input-field" placeholder="e.g. www.example.com" type="domain" onChange={(e) => { setDomain(e.target.value) }}></input>
                   <div className="input-field">
