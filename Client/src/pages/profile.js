@@ -1,94 +1,70 @@
 import '../style/profile.css'
 import Navbar from '../component/navbar';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useCallback,useMemo} from 'react';
 import Cookies from "js-cookie";
 import firebase from "firebase/compat/app";
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Loader from '../component/Loader';
-import { ToastContainer } from 'react-toastify';
-import { AiFillMail,AiFillPhone,AiOutlineProfile } from 'react-icons/ai';
+import { ToastContainer, toast } from 'react-toastify';
+import { AiFillMail,AiFillPhone } from 'react-icons/ai';
 import user from '../assets/user-folder.png'
 export function Profile() {
   const [userID, setUserId] = useState(null)
   const [userDetails, setUserDetails] = useState();
   const [userReports, setUserReports] = useState([]);
   const [loading, setLoading] = useState(false)
-  var allDocs = [];
+  const allDocs = useMemo(() => [], []);
   const [domain, setDomain] = useState();
   const [selectedTime, setSelectedTime] = useState('');
   const [selectedScan, setSelectedScan] = useState('');
-  const [showToast, setShowToast] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
-  const [toastMessage, setToastMessage] = useState("");
-
-  const showToastNotification = (message) => {
-    setToastMessage(message);
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 3000);
-  };
-
-  // const { currentUser } = useContext(AuthContext);
-  useEffect(() => {
-    setLoading(true)
-    var uid = Cookies.get("userID");
-    console.log("first", uid);
-    if (uid != null) {
-      setUserId(uid);
-    }
-    getData();
-  }, []);
-
-
-  async function getData() {
+  const getData = useCallback(async () => {
     try {
       const uid = Cookies.get("userID");
-
+  
       const [userDoc, scansDoc] = await Promise.all([
         firebase.firestore().collection("users").doc(uid).get(),
         firebase.firestore().collection('scans').doc('txt').collection(uid).get(),
       ]);
-
+  
       if (!userDoc.exists) {
         console.log("No user document found!");
       } else {
         setUserDetails(userDoc.data());
       }
-
+  
       if (scansDoc.empty) {
         console.log("No scans document found!");
       } else {
-        scansDoc.forEach((doc) => {
-          const isDocExist = allDocs.some((existingDoc) => existingDoc.id === doc.id);
-          if (!isDocExist) {
-            allDocs.push(doc);
-          }
-        });
-        setUserReports(allDocs)
+        const updatedDocs = scansDoc.docs.filter(doc => !allDocs.some(existingDoc => existingDoc.id === doc.id));
+        setUserReports(prevReports => [...prevReports, ...updatedDocs]);
       }
       setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
       setLoading(false);
     }
-  }
+  }, [allDocs]);
+  
+  
+  useEffect(() => {
+    setLoading(true);
+    var uid = Cookies.get("userID");
+    console.log("user found", uid);
+    if (uid != null) {
+      setUserId(uid);
+    }
+    getData();
+  }, [getData]);
+  
 
-  const handleDownload = (reportId) => {
-    history.push({
 
-      pathname: '/otherpage',
-      state: { data: reportId }
 
-    });
-    window.location.href = "/otherpage";
-  };
 
   const ReportsCards = () => {
 
     const reportCards = userReports.map((report, index) => (
-      // console.log(report.data()),
       <div key={index} className='reportCard'>    
             <h2>{report.data().Domain}</h2>
             <div className="Scan_description">
@@ -100,6 +76,10 @@ export function Profile() {
     ));
 
     return <>{reportCards}</>;
+  };
+  const handleDownload = (reportId) => {
+    console.log(reportId);
+    navigate('/fullscanreport',{state: reportId });
   };
 
 
@@ -123,7 +103,7 @@ export function Profile() {
       //   });
       setLoading(false)
     } else {
-      showToastNotification("Please Login first for using full Scan functionality user must logIn");
+      toast("Please Login first for using full Scan functionality user must logIn");
       setLoading(false)
     }
     // send domain name , scan type and uid to backend using axios using url 
@@ -141,10 +121,10 @@ export function Profile() {
         : userID ? (
           <div className='profile_page'>
             <Navbar />
-           <div >
+           <div className='section__padding' >
             {/* Info Section */}
             <div className='info_section'>
-              <div className='user_icon'><img src={user}></img></div>
+              <div className='user_icon'><img src={user} alt='user_icon'></img></div>
               <div className='User_info'>
                     <h4 className='email_field'> <AiFillMail/>Email: {userDetails.email}</h4>
                     <h4 className='Number_field'> <AiFillPhone/>Ph.Number: {userDetails.number}</h4>

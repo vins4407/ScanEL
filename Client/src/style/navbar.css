@@ -49,7 +49,7 @@
     background:linear-gradient(90deg, rgba(172, 0, 190, 1) 0%, rgba(255, 108, 34, 0.66) 100%); 
 }
 
-@media screen and (max-width: 1050px) {
+@media only screen and (min-width: 1200px) {
     .scanEL__navbar-links_container {
         display: flex;
     }
@@ -59,13 +59,13 @@
     }
 }
 
-@media screen and (max-width: 700px) {
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
     .scanEL__navbar {
         padding: 2rem 4rem;
     }
 }
 
-@media screen and (max-width: 550px) {
+@media only screen and (max-width: 767px) {
     .scanEL__navbar {
         padding: 1rem;
         height:8rem;

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../auth/auth';
-import {  useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../style/navbar.css';
 import logo from '../assets/logo1.png';
 import app from '../firebase/base';
@@ -8,10 +8,8 @@ import Cookies from 'js-cookie';
  
 const Navbar = () => {
  
-  const { currentUser } = useContext(AuthContext);
-  const history = useHistory();
- 
-
+  var currentUser = Cookies.get("userID");
+  const navigate = useNavigate(); 
 
   return (
     <div className="scanEL__navbar">
@@ -26,9 +24,8 @@ const Navbar = () => {
       
       <div className="scanEL__navbar-sign"> 
    
-        {currentUser 
-          ? (<div className='auth_buttons'>
-              {history.location.pathname !== '/profile' ? (
+        {currentUser ? (<div className='auth_buttons'>
+              {window.location !== '/profile' ? (
               <a href='/profile'>
               <button className='signin_btn'>Profile</button>
              </a>
@@ -38,8 +35,11 @@ const Navbar = () => {
                 </a>
               )}
               <a>
-              <button className='signin_btn' onClick={() => {app.auth().signOut();Cookies.remove('userID'); window.location.href= "/";}}>Logout</button>
-              </a>
+              <button className='signin_btn' onClick={() => {
+                  app.auth().signOut();
+                  Cookies.remove('userID');
+                  navigate("/");
+                }}>Logout</button></a>
               </div>
               ) 
           : (<div className='auth_buttons'>

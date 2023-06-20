@@ -100,7 +100,7 @@ export const SingleScan = () => {
         </div>}
         <Navbar2 />
         <div style={{ display: 'flex', justifyContent: 'center' }} >
-          <div className='input-div' style={{ maxWidth: 500, }}>
+          <div className='input-div' style={{ maxWidth: 1000, }}>
             <input className='input-field' placeholder='Enter Domain name' onChange={(e) => { setDomain(e.target.value) }} />
             <button className="submit__btn" onClick={scanDomain} >Scan</button>
           </div>

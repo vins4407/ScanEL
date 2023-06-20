@@ -1,5 +1,4 @@
 import React, {  useContext, useState, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
 import app from '../../firebase/base';
 import { Footer } from '../../component/footer.js';
 import './login.css';
@@ -17,7 +16,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const { userId, setUserId } = useContext(UserContext);
   const [loading, setLoading] = useState(false)
-
 
   const showToastNotification = (message) => {
     toast.error(message,{
@@ -65,7 +63,8 @@ const Login = () => {
       }
     });
   }, [userId]);
-  useEffect((setUserId) => {
+
+  useEffect(() => {
     console.log("this is current user uid", userId);
     Cookies.set("userID", userId, { expires: 1 / 24 });
 
@@ -130,4 +129,4 @@ const Login = () => {
   );
 }
 
-export default withRouter(Login);
+export default Login;

@@ -1,7 +1,6 @@
 import "../style/homepage.css";
 import React, { useState, useEffect } from "react";
-import Modal from "react-modal";
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import "../style/search.css";
 import "../style/tools.css"
 import axios from "axios";
@@ -23,7 +22,7 @@ export function Search() {
   const [userId, setUserId] = useState(null);
   const [loading, setLoading] = useState(false)
   const [responseData, setResponseData] = useState('')
-  const history = useHistory();
+  const navigate =useNavigate();
   
   const [selectedOption, setSelectedOption] = useState('Scan');
 
@@ -65,13 +64,8 @@ export function Search() {
           console.log(res);
           console.log("this is res data", res.data);
           setResponseData(res.data);
-          history.push({
-
-            pathname: '/otherpage',
-            state: { data: res.data }
-      
-          });
-          window.location.href = "/otherpage";
+          navigate("/fullscanreport",{state: { data: res.data }});
+          //window.location.href = "/fullscanreport";
           clearInputs();
 
         })
@@ -113,7 +107,7 @@ export function Search() {
 
 
   const clearInputs = () => {
-    // console.log("this is response data",responseData);
+    console.log("this is response data",responseData);
     if (responseData === "Done") {
       setScanType("");
       setDomain("");
@@ -161,7 +155,7 @@ export function Search() {
       {loading ? <><div className='loaderContainer'><Loader /> </div></> :
         <>
           {/* Search Section */}
-          <div className="search_container">
+          <div className="search_container  section__padding" >
 
             <div className="first-section-left">
               <h1 className="gradient__text">Free Vulnerability Scanning & Reconnaissance Testing Tool</h1>

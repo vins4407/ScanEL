@@ -30,7 +30,7 @@
 width: 25%;
 height: 25%;
 display: flex;
-justify-content: start;
+justify-content: flex-start;
 }
 
 .user_icon img{
@@ -165,10 +165,15 @@ justify-content: start;
     padding: 20px;
   }
   .User_info{
-    width: 90%;
+    width: 120%;
+    
   }
   .User_info h4{
-    font-size: 18px;
+    font-size: 16px;
+    word-wrap: break-word;
+    word-break: break-all;
+    padding-left: 10px;
+  padding-right: 10px;
   }
   .user_icon{
     width: 50%;
@@ -179,6 +184,9 @@ justify-content: start;
   }
   .User_info{
     flex-direction: column;
+  }
+  .input-div{
+    padding: 0;
   }
   
 

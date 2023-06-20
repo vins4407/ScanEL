@@ -1,5 +1,4 @@
 import React, { useState,useContext } from 'react';
-import { withRouter, useHistory } from 'react-router-dom';
 import app from '../../firebase/base.js';
 import {Footer} from '../../component/footer.js';
 import './signup.css';
@@ -101,4 +100,4 @@ const Signup = () => {
 }
 
 
-export default withRouter(Signup);
+export default Signup;

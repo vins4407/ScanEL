@@ -11,13 +11,14 @@
     background-color: white;
     border-radius: 15px;
 }
-
-.report code{
-    background-color:  rgba(217,217,227,.8);
-    padding: 5px 20px;
-    font-size: 22px;
-
+.report-title{
+    padding: 10px;
 }
+.report-title h1{
+    font-size: 4vh;
+}
+
+
 .d-btn {
     padding: 0.5rem 1rem;
     color: #fff;
@@ -51,7 +52,6 @@
 
 .tool h3{
     font-size: 20px;
-    width: max-content;
     padding-top: 15px;
     color: wheat;
 }
@@ -76,13 +76,17 @@
     font-size: 22px;
     font-weight: bold;
 }
-.report table,.report th,.report td{
-    width: 55%;
+.report table {
+    width: 100%;
     font-size: 20px;
     border-collapse: collapse;
     padding: 2px;
+  }
   
-}
+  .report th,
+  .report td {
+    padding: 8px;
+  }
 
 /* dsfd */
 .toolData{
@@ -180,6 +184,7 @@
     display: flex;
     width: 100%;
     justify-content: flex-start;
+    flex-direction: column;
 }
 
 
@@ -207,4 +212,54 @@ hr {
   
   td {
     padding: 8px;
+  }
+/* tablets */
+  @media only screen and (min-width: 768px) and (max-width: 1199px) {
+    .output{
+        padding: 0px;
+        margin: 0px;
+    }
+    
+    .mainDiv ul{
+        margin: 0;
+    }
+    table{
+        margin-right: 0;
+        margin-left: 2rem;
+    }
+    .report table,.report th,.report td{
+        width: 80%;
+        font-size: 1.5vh;
+        border-collapse: separate;
+        border-spacing: 0 1em;
+      
+    }
+
+  }
+/* mobile */
+  @media only screen and (max-width: 767px) {
+    .fullScan{
+        padding: 0px;
+    }
+    .report-title h2{
+        text-align: center;
+    }
+    .output{
+        padding: 0px;
+        margin: 0px;
+    }
+    
+    .mainDiv ul{
+        margin: 0;
+    }
+    table{
+        margin-right: 0;
+        margin-left: 0rem;
+    }
+    .report th,
+  .report td {
+    font-size: 13px;
+    padding: 5px;
+  }
+
   }

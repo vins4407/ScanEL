@@ -1,7 +1,7 @@
 import React from "react";
 import "../style/footer.css"
 import { AiFillMail } from 'react-icons/ai';
-export function Footer (){
+export function Footer(){
     return(
         <div className="scanel__footer section__padding">
         <div className="scanel__footer-heading">

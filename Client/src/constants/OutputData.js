@@ -1,6 +1,58 @@
 import React from "react";
 import '../style/Single.css'
 
+export const VulnerabilityOutput = ({ vulData }) => {
+  const parsedData = JSON.parse(vulData);
+  return (
+      <div className='mainDiv' >
+          <h1 className='gradient__text'>Vulnerabilities</h1>
+          {Object.entries(parsedData).map(([key, value]) => (
+              <div key={key} className='TitleDiv'>
+                  <h3 className='gradient__text'>{key}</h3>
+                  <hr />
+                  <ul>
+                      {value.map((item, index) => (
+                          <li key={index}>
+                              <ul>
+                                  {Object.entries(item).map(([itemKey, itemValue]) => (
+                                      <li key={itemKey}>
+                                          <strong>{itemKey}:</strong> {itemValue}
+                                      </li>
+                                  ))}
+                              </ul>
+                          </li>
+                      ))}
+                  </ul>
+              </div>
+          ))}
+      </div>
+  );
+};
+
+
+export const ToolinfoOutput = ({ data }) => {
+  return (
+    <div className="toolData">
+      <div className="titleDiv" />
+      <strong>{data.data.title}</strong>
+      <div className="infoTab">
+        <b>Risk Description:</b>
+        <ul>
+          {data.data.info.riskDescription.map((risk, index) => (
+            <li key={index}>{risk}</li>
+          ))}
+        </ul>
+        <b>Recommendations:</b>
+        <ul>
+          {data.data.info.recommendation.map((recommendation, index) => (
+            <li key={index}>{recommendation}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
 
 export const WhoisTable = ({ whodata }) => {
     return (
