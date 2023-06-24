@@ -138,7 +138,6 @@ async def full_scan(request: Request, domain: str, UID: str, nom: int):
     output = subprocess.run(["subfinder", "--silent", "-d", domain], capture_output=True, text=True)
     results["subfinder"] = parse_subfinder_output(output.stdout)
 
-
     output = subprocess.run(["nuclei", "-u", domain, "-t", "nuclei-templates/http/misconfiguration/http-missing-security-headers.yaml", "--silent"], capture_output=True, text=True)
     results["nuclei"] = parse_http_output(output.stdout)
 
