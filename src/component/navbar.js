@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../auth/auth';
+import React  from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/navbar.css';
 import logo from '../assets/logo1.png';
@@ -34,16 +33,17 @@ const Navbar = () => {
                   <button className='signin_btn'>Home</button>
                 </a>
               )}
-              <a>
+              
               <button className='signin_btn' onClick={() => {
                   app.auth().signOut();
                   Cookies.remove('userID');
                   navigate("/");
-                }}>Logout</button></a>
+                }}>Logout</button>
+              
               </div>
               ) 
           : (<div className='auth_buttons'>
-           <a href='/login'><button className='signin_btn' >Sign In </button></a>
+           <a href='/login' ><button className='signin_btn' >Sign In </button></a>
            <a href='/signup'><button className='signin_btn'>Sign up</button></a>
            </div>
          )}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Navbar2 from '../component/Nav2'
 import '../style/FullScan.css'
 import { useLocation } from 'react-router-dom';
@@ -18,7 +18,7 @@ export const FullScanReport = () => {
 
 
 
-   const VulInfoSearch = ({  }) => {
+   const VulInfoSearch = () => {
      const headings = Object.keys(JSON.parse(data.Vulnerability));
      console.log(headings);
      const filteredVulInfo = vulInfo.filter((vul) => {

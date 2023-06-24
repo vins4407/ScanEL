@@ -109,15 +109,15 @@ export const SingleScan = () => {
           {loading ? <Loader /> : <></>}
         </div>
         <div className='scanningDiv'>
-          {resData == null ? <></>
-            : type == "whois" ? <div className='OutputDiv'><WhoisTable whodata={JSON.parse(resData)} /></div>
-              : type == "nmap" ? <div className='OutputDiv'><Nmapdata data={JSON.parse(resData)} /></div>
-                : type == "subfinder" ? <div className='OutputDiv'><SubFinderList subdomains={JSON.parse(resData)} /></div>
-                  : type == "nuclei" ? <div className='OutputDiv'><NucleiOutput headers={JSON.parse(resData)} /></div>
-                    : type == "dig" ? <div className='OutputDiv'><DigOutput digdata={JSON.parse(resData)} /></div>
-                      : type == "sslscan" ? <div className='OutputDiv'><SslOutput ssldata={JSON.parse(resData)} /></div>
-                        : type == "whatweb" ? <div className='OutputDiv'><WhatwebOutput whatwebdata={JSON.parse(resData)} /></div>
-                          : type == "dnsscan" ? <div className='OutputDiv'><DnsScan dnsOutput={JSON.parse(resData)} /></div>
+          {resData === null ? <></>
+            : type === "whois" ? <div className='OutputDiv'><WhoisTable whodata={JSON.parse(resData)} /></div>
+              : type === "nmap" ? <div className='OutputDiv'><Nmapdata data={JSON.parse(resData)} /></div>
+                : type === "subfinder" ? <div className='OutputDiv'><SubFinderList subdomains={JSON.parse(resData)} /></div>
+                  : type === "nuclei" ? <div className='OutputDiv'><NucleiOutput headers={JSON.parse(resData)} /></div>
+                    : type === "dig" ? <div className='OutputDiv'><DigOutput digdata={JSON.parse(resData)} /></div>
+                      : type === "sslscan" ? <div className='OutputDiv'><SslOutput ssldata={JSON.parse(resData)} /></div>
+                        : type === "whatweb" ? <div className='OutputDiv'><WhatwebOutput whatwebdata={JSON.parse(resData)} /></div>
+                          : type === "dnsscan" ? <div className='OutputDiv'><DnsScan dnsOutput={JSON.parse(resData)} /></div>
 
                             : <>{resData}</>}
           {loading ? <></> : <div className='toolInfo'><ToolInfo data={toolData.data.info}/></div>}

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 import '../style/loader.css'
 
 const Loader = () => {
@@ -41,10 +41,7 @@ const Loader = () => {
 
   return (
     <div className='loader'>
-        {/* {showToast && <div>
-          <center><code style={{backgroundColor:'blanchedalmond',padding:10,borderRadius:5}}>{toastMessage}</code></center>
-          
-        </div>} */}
+       
         	<div class="socket">
 			<div class="gel center-gel">
 				<div class="hex-brick h1"></div>
