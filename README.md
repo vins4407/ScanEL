@@ -1,12 +1,15 @@
 # ScanEL
 
-![ScanEL Banner](path/to/scanel-banner.png)
-
+![ScanEL Banner](public/scanel-banner.png)
+![ScanEL Frontend](https://main.d10kqrybofvivw.amplifyapp.com/)
 [![Top 3 Project - Mumbai Hacks](https://img.shields.io/badge/Mumbai%20Hacks-Top%203%20Project-orange?style=for-the-badge)](https://mumbaihacks.com)
 [![Postman Sponsor Track Winner - HackThis Fall](https://img.shields.io/badge/HackThis%20Fall-Postman%20Sponsor%20Track%20Winner-brightgreen?style=for-the-badge)](https://hackthisfall.com)
 
-ScanEL is an award-winning web-based vulnerability scanner that revolutionizes the way you secure your web applications. It provides a comprehensive analysis of your website, identifying vulnerabilities and generating detailed reports. With ScanEL, you can ensure the highest level of security for your web applications and protect sensitive user data.
+ScanEL is an award-winning web-based vulnerability and reconnaissance scanner that revolutionizes the way you secure your web applications. It provides a comprehensive analysis of your website based on the scaned tools, identifying vulnerabilities and generating detailed reports.
 
+Scanel is a centralized platform designed to streamline the usage of multiple reconnaissance tools through a convenient web interface. 
+With Scanel, users can effortlessly run various recon tools without the hassle of manual installation or configuration.
+By offering a web-based interface, Scanel removes the reliance on traditional command-line interfaces, making it easily accessible to users. It creates a user-friendly environment that enhances the efficiency of reconnaissance tasks, catering to users of all technical backgrounds.
 ## Stack
 
 - ReactJS
