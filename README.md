@@ -13,9 +13,9 @@ By offering a web-based interface, Scanel removes the reliance on traditional co
 ## Stack
 
 - ReactJS
-- NodeJS
 - Bash
 - Python
+- Fastapi
 - Google Cloud
 
 ## Project Recognition
