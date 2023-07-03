@@ -2,7 +2,7 @@ import React, { useState,useContext } from 'react';
 import app from '../../firebase/base.js';
 import {Footer} from '../../component/footer.js';
 import './signup.css';
-import { UserContext } from '../../component/UserContext.js';
+import { UserContext } from '../../uitls/UserContext.js';
 import Navbar2 from '../../component/Nav2.js';
 import Cookies from "js-cookie";
 import logo from '../../assets/logo1.png'

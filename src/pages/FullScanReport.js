@@ -81,7 +81,7 @@ export const FullScanReport = () => {
 
     return (
         <div>
-            <div class="fullScan">
+            <div className="fullScan">
                 <Navbar2 />
                 <button className='d-btn' onClick={generatePDF}>Download PDF</button>
                 <div className='report' id='reportDiv'>

@@ -24,14 +24,16 @@ const Navbar = () => {
       <div className="scanEL__navbar-sign"> 
    
         {currentUser ? (<div className='auth_buttons'>
-              {window.location !== '/profile' ? (
-              <a href='/profile'>
-              <button className='signin_btn'>Profile</button>
-             </a>
-              ) : (
+              {window.location === '/profile' ? (
                 <a href='/'>
-                  <button className='signin_btn'>Home</button>
-                </a>
+                <button className='signin_btn'>Home</button>
+              </a>
+             
+              ) : (
+                <a href='/profile'>
+                <button className='signin_btn'>Profile</button>
+               </a>
+                
               )}
               
               <button className='signin_btn' onClick={() => {

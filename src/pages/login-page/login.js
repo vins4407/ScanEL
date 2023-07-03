@@ -2,7 +2,7 @@ import React, {  useContext, useState, useEffect } from 'react';
 import app from '../../firebase/base';
 import { Footer } from '../../component/footer.js';
 import './login.css';
-import { UserContext } from '../../component/UserContext';
+import { UserContext } from '../../uitls/UserContext';
 import firebase from "firebase/compat/app";
 import Navbar2 from '../../component/Nav2.js';
 import Cookies from "js-cookie";
@@ -56,18 +56,18 @@ const Login = () => {
   
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
+
       if (user) {
         setUserId(user.uid);
       } else {
         setUserId(null);
       }
     });
-  }, [userId]);
+  }, [setUserId]);
 
   useEffect(() => {
     console.log("this is current user uid", userId);
     Cookies.set("userID", userId, { expires: 1 / 24 });
-
   }, [userId]);
 
 

@@ -5,7 +5,7 @@ import "../style/search.css";
 import "../style/tools.css"
 import axios from "axios";
 import ai from '../assets/scan.png';
-import { sslscan, dig, subfinder, tcp, whois, whatweb, nuclei, dns } from './imports';
+import { sslscan, dig, subfinder, tcp, whois, whatweb, nuclei, dns } from '../uitls/imports';
 import Cookies from "js-cookie";
 import { Whyscanel } from "./whyscanel";
 import { Footer } from "./footer";
@@ -58,7 +58,7 @@ export function Search() {
     console.log(domain, scanType, userId);
     if (uid != null) {
       console.log(uid)
-      await axios.post(`http://192.168.122.1:8000/fullscan?domain=${domain}&UID=${userId}&nom=8695634407`
+      await axios.post(`http://192.168.122.1:8000/fullscan?domain=${domain}&UID=${userId}&nom=8605634407`
       )
         .then(res => {
           console.log(res);

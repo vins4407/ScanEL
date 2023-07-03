@@ -2,22 +2,45 @@ import '../style/profile.css'
 import Navbar from '../component/navbar';
 import React, { useState, useEffect ,useCallback,useMemo} from 'react';
 import Cookies from "js-cookie";
+import { DemoItem } from '@mui/x-date-pickers/internals/demo';
 import firebase from "firebase/compat/app";
 import { useNavigate } from 'react-router-dom';
 import Loader from '../component/Loader';
 import { ToastContainer, toast } from 'react-toastify';
 import { AiFillMail,AiFillPhone } from 'react-icons/ai';
 import user from '../assets/user-folder.png'
+import {TimePicker, MobileTimePicker } from '@mui/x-date-pickers';
+import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers';
+import { styled } from '@mui/system';
+import axios from 'axios';
+
+
 export function Profile() {
   const [userID, setUserId] = useState(null)
   const [userDetails, setUserDetails] = useState();
   const [userReports, setUserReports] = useState([]);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const allDocs = useMemo(() => [], []);
   const [domain, setDomain] = useState();
   const [selectedTime, setSelectedTime] = useState('');
   const [selectedScan, setSelectedScan] = useState('');
   const navigate = useNavigate();
+
+  const showToastNotification = (message) => {
+    toast.warning(message,{
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    }); 
+    // Show success toast notification
+    // toast.error(message); // Show error toast notification
+    // toast.info(message); // Show info toast notification
+  };
 
   const getData = useCallback(async () => {
     try {
@@ -59,11 +82,50 @@ export function Profile() {
   }, [getData]);
   
 
+ 
 
+  
+  const handleDownload = (reportId) => {
+    console.log(reportId);
+    navigate('/fullscanreport',{state: reportId });
+  };
+
+  const handleTimeChange = (time) => {
+    setSelectedTime(time);
+  };
+
+
+  const handleSubmit = async (e) => {
+    setLoading(true);
+    var uid = Cookies.get("userID");
+    setUserId(uid);
+    e.preventDefault();
+    if (uid != null) {
+      console.log(uid)
+      console.log(domain,selectedTime,selectedScan,uid);
+      const time = `${selectedTime["$H"].toString().padStart(2, "0")}:${selectedTime["$m"].toString().padStart(2, "0")}`;
+      console.log(time);
+      await axios.post(`http://192.168.122.1:8000/schedulescan?domain=${domain}&scan_type=${selectedScan}&UID=${uid}&nom=8605634407&time_to_execute=${time}`)
+        .then(res => {
+          console.log(res);
+          console.log("this is res data", res.data);
+        })
+        .catch(err => {
+          showToastNotification(err.message);
+          console.log("this is error:", err.message);
+        });
+       setLoading(false)
+       toast("Task sheduled successfully! Once the task is executed you can view the report.")
+    } else {
+      showToastNotification("Please Login first for using full Scan functionality user must logIn");
+      setLoading(false)
+    }
+
+
+  }
 
 
   const ReportsCards = () => {
-
     const reportCards = userReports.map((report, index) => (
       <div key={index} className='reportCard'>    
             <h2>{report.data().Domain}</h2>
@@ -77,42 +139,21 @@ export function Profile() {
 
     return <>{reportCards}</>;
   };
-  const handleDownload = (reportId) => {
-    console.log(reportId);
-    navigate('/fullscanreport',{state: reportId });
-  };
-
-
-  const handleSubmit = async (e) => {
-    setLoading(true);
-    var uid = Cookies.get("userID");
-    setUserId(uid);
-    e.preventDefault();
-    if (uid != null) {
-      console.log(uid)
-      console.log(domain,selectedTime,selectedScan,uid);
-      // await axios.post(`http://34.68.145.96:8000/fullscan?domain=${domain}&UID=${userID}&nom=8695634407`)
-      //   .then(res => {
-      //     console.log(res);
-      //     console.log("this is res data", res.data);
-      //   })
-      //   .catch(err => {
-      //     showToastNotification(err.message);
-      //     console.log("this is error:", err.message);
-      //     // alert("Error in scanning")
-      //   });
-      setLoading(false)
-    } else {
-      toast("Please Login first for using full Scan functionality user must logIn");
-      setLoading(false)
-    }
-    // send domain name , scan type and uid to backend using axios using url 
-
-
+  const StyledTimePicker = styled(MobileTimePicker)`
+  /* Add your styles here */
+  input {
+    color: white;
+    border-color:white;
   }
+  label {
+    color: white; /* Change the color to your desired value */
+  } 
+  .MuiSvgIcon-root {
+    color: white; /* Change the clock icon color to your desired value */
+  }
+  
 
-
-
+`;
 
   return (
     <>
@@ -121,29 +162,35 @@ export function Profile() {
         : userID ? (
           <div className='profile_page'>
             <Navbar />
-           <div className='section__padding' >
-            {/* Info Section */}
-            <div className='info_section'>
-              <div className='user_icon'><img src={user} alt='user_icon'></img></div>
-              <div className='User_info'>
-                    <h4 className='email_field'> <AiFillMail/>Email: {userDetails.email}</h4>
-                    <h4 className='Number_field'> <AiFillPhone/>Ph.Number: {userDetails.number}</h4>
-                </div>
-            </div>
+            <div className='section__padding' >
+              {/* Info Section */}
+              <div className='info_section'>
+                <div className='user_icon'><img src={user} alt='user_icon'></img></div>
+                <div className='User_info'>
+                      <h4 className='email_field'> <AiFillMail/>Email: {userDetails.email}</h4>
+                      <h4 className='Number_field'> <AiFillPhone/>Ph.Number: {userDetails.number}</h4>
+                  </div>
+              </div>
             {/* CronJob Section */}
             <div >
                 <div className="input-div">
                   <input className="input-field" placeholder="e.g. www.example.com" type="domain" onChange={(e) => { setDomain(e.target.value) }}></input>
                   <div className="input-field">
-                    <select className="input-field" value={selectedTime} onChange={(e) => { setSelectedTime(e.target.value) }}>
-                      <option value="">Select Time</option>
-                      <option value="1">1 hr</option>
-                      <option value="12">12 hr</option>
-                      <option value="24">24 hr</option>
-                    </select>
+                    <DemoItem >
+                    <StyledTimePicker
+                            label="Selected Time"
+                            viewRenderers={{
+                              hours: renderTimeViewClock,
+                              minutes: renderTimeViewClock,
+                              seconds: renderTimeViewClock,
+                            }}
+                            value={selectedTime}
+                            onChange={(newValue) => setSelectedTime(newValue)}      
+                    />
+                  </DemoItem>
                   </div>
                   <div className="input-field">
-                    <select className="input-field" value={selectedScan} onChange={(e) => { setSelectedScan(e.target.value) }}>
+                    <select className="input-field" value={selectedScan} onChange={(e) => {setSelectedScan(e.target.value) }}>
                       <option value="">Select scan</option>
                       <option value="nmap">NMAP</option>
                       <option value="whois">WHOIS</option>
@@ -156,9 +203,13 @@ export function Profile() {
 
            <div >
             {/* Reports section */}
-           <div className='Reports-main'>
-              <ReportsCards />
-            </div>
+            {userReports.empty
+                ?<div >No Reports Found !</div>
+               
+                :  <div className='Reports-main'>
+                    <ReportsCards />
+                  </div>
+            }
            </div>
           </div>
            
