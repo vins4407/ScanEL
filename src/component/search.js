@@ -58,7 +58,7 @@ export function Search() {
     console.log(domain, scanType, userId);
     if (uid != null) {
       console.log(uid)
-      await axios.post(`http://192.168.122.1:8000/fullscan?domain=${domain}&UID=${userId}&nom=8605634407`
+      await axios.post(`http://16.171.152.230/fullscan?domain=${domain}&UID=${userId}&nom=8605634407`
       )
         .then(res => {
           console.log(res);
@@ -193,6 +193,7 @@ export function Search() {
                 <ToolsCard imgUrl={nuclei} heading="Nuclei-HTTPHeader" data="It helps to find security issues based onYAML-based templates. " btn="nuclei" />
                 <ToolsCard imgUrl={dns} heading="DnsREcon" data="DNS reconnaissance tool used for enumerating DNS information" btn="dnsscan" />
                 <ToolsCard imgUrl={sslscan} heading="sslscan" data="Scans SSL/TLS services to identify protocols,cipher suites vulnerabilities" btn="sslscan" />
+                
 
             
             </div>

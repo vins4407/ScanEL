@@ -9,7 +9,7 @@ import Loader from '../component/Loader';
 import { ToastContainer, toast } from 'react-toastify';
 import { AiFillMail,AiFillPhone } from 'react-icons/ai';
 import user from '../assets/user-folder.png'
-import {TimePicker, MobileTimePicker } from '@mui/x-date-pickers';
+import { MobileTimePicker } from '@mui/x-date-pickers';
 import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers';
 import { styled } from '@mui/system';
 import axios from 'axios';
@@ -90,9 +90,6 @@ export function Profile() {
     navigate('/fullscanreport',{state: reportId });
   };
 
-  const handleTimeChange = (time) => {
-    setSelectedTime(time);
-  };
 
 
   const handleSubmit = async (e) => {
@@ -105,7 +102,7 @@ export function Profile() {
       console.log(domain,selectedTime,selectedScan,uid);
       const time = `${selectedTime["$H"].toString().padStart(2, "0")}:${selectedTime["$m"].toString().padStart(2, "0")}`;
       console.log(time);
-      await axios.post(`http://192.168.122.1:8000/schedulescan?domain=${domain}&scan_type=${selectedScan}&UID=${uid}&nom=8605634407&time_to_execute=${time}`)
+      await axios.post(`http://16.171.152.230/schedulescan?domain=${domain}&scan_type=${selectedScan}&UID=${uid}&nom=8605634407&time_to_execute=${time}`)
         .then(res => {
           console.log(res);
           console.log("this is res data", res.data);
@@ -192,9 +189,16 @@ export function Profile() {
                   <div className="input-field">
                     <select className="input-field" value={selectedScan} onChange={(e) => {setSelectedScan(e.target.value) }}>
                       <option value="">Select scan</option>
-                      <option value="nmap">NMAP</option>
-                      <option value="whois">WHOIS</option>
-                      <option value="fullscan">Full Scan</option>
+                      <option value="subfinder">Subfinder</option>
+                      <option value="nmap">Nmap</option>
+                      <option value="whois">Whois</option>
+                      <option value="whatweb">WhatWeb</option>
+                      <option value="dig">Dig</option>
+                      <option value="nuclei">Nuclei-HTTPHeader</option>
+                      <option value="dnsscan">DnsREcon</option>
+                      <option value="sslscan">Sslscan</option>
+                      <option value="fullscan">FullScan</option>
+
                     </select>
                   </div>
                   <button  onClick={handleSubmit} className="submit__btn" >Set Cron-Job</button>

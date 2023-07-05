@@ -178,7 +178,9 @@
     font-size: 20px;
 }
 .mainDiv h3{
-    font-size: 22px;
+    font-size: 16px;
+    color: darkgray;
+    padding-bottom: 1rem;
 }
 .TitleDiv{
     display: flex;

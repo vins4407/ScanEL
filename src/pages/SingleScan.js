@@ -7,21 +7,28 @@ import Loader from '../component/Loader';
 import Cookies from 'js-cookie';
 import { toolsData } from '../constants/ToolsData';
 import { Nmapdata, WhoisTable, NucleiOutput, SubFinderList, WhatwebOutput, DigOutput, SslOutput, DnsScan } from '../constants/OutputData'
+import { ToastContainer, toast } from 'react-toastify';
 export const SingleScan = () => {
   const { type } = useParams();
   const [domain, setDomain] = useState();
   const [loading, setLoading] = useState(false)
   const [resData, setResData] = useState(null)
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
   const toolData = toolsData.find((tool) => tool.tool === type);
 
   const showToastNotification = (message) => {
-    setToastMessage(message);
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 3000);
+    toast.warning(message,{
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    }); 
+    // Show success toast notification
+    // toast.error(message); // Show error toast notification
+    // toast.info(message); // Show info toast notification
   };
 
   const ToolInfo = ({ data }) => {
@@ -72,7 +79,7 @@ export const SingleScan = () => {
         setLoading(true)
         try {
           var uid = Cookies.get("userID")
-          const response = await axios.post(`http://192.168.122.1:8000/scan?domain=${domain}&scan_type=${type}&UID=${uid}&nom=9359979571`);
+          const response = await axios.post(`http://16.171.152.230/scan?Domain=${domain}&Type=${type}&uid=${uid}&num=8605634407`);
           console.log(response.data);
           setResData(response.data)
           setLoading(false)
@@ -95,9 +102,7 @@ export const SingleScan = () => {
   return (
     <>
       <div className='singleScan'>
-        {showToast && <div>
-          <center><code style={{ backgroundColor: 'blanchedalmond', padding: 10, borderRadius: 5 }}>{toastMessage}</code></center>
-        </div>}
+        <ToastContainer/>      
         <Navbar2 />
         <div style={{ display: 'flex', justifyContent: 'center' }} >
           <div className='input-div' style={{ maxWidth: 1000, }}>
